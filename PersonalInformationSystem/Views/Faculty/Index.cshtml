@@ -1,0 +1,62 @@
+﻿@model PersonalInformationSystem.Models.FacultyModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int i = 1;
+}
+
+<div class="row table-drop">
+    <div class="col-xs-12 col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Faculty List</h4>
+            </div>
+            <div class="panel-body">
+                <div class="pull-left">
+                    <p>
+                        @Html.ActionLink("Add New", "Create", "Faculty", htmlAttributes: new { @class = "btn btn-success" })
+                    </p>
+                </div>
+                <div class="col-xs-4 input-group custom-search-form pull-right">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="info">
+                            <th>S.N.</th>
+                            <th>Class</th>
+                            <th>Faculty Name</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model.FacultyModelList)
+                        {
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.ClassName</td>
+                                <td>@item.FacultyName</td>
+                                <td>@item.Status</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { facultyID = @item.FacultyId }, htmlAttributes: new { @class = "btn btn-sm btn-primary" })
+                                    @Html.ActionLink("Delete", "Delete", new { facultyID = @item.FacultyId }, htmlAttributes: new { @class = "btn btn-sm btn-danger" })
+                                </td>
+                            </tr>
+                            i++;
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

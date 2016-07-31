@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>List of Students</h2>
+
+<div class="pull-left">
+    <p>
+        <a href="/StudentInfo/Create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+    </p>
+</div>
+
+<table class="col-xs-12 table table-bordered table-hover ">
+    <thead>
+
+        <tr>
+            <th class="col-xs-2">
+                Full Name
+            </th>
+            <th class="col-xs-1">
+                Date Of Birth
+            </th>
+            <th class="col-xs-1">
+                Mobile No.
+            </th>
+            <th class="col-xs-1">
+               Residence No.
+            </th>
+            <th class="col-xs-1">
+                Email
+            </th>
+            <th class="col-xs-2">
+                Address
+            </th>
+            <th >
+                Gender
+            </th>
+            <th class="col-xs-1">
+                Enrolled Date
+            </th>
+            <th class="col-xs-1.5">
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.StudentInfoModelList)
+            {
+            <tr>
+                <td>
+                    @item.FirstName @item.MiddleName @item.LastName
+                </td>
+                <td>
+                    @item.DateOfBirth
+                </td>
+                <td>
+                    @item.MobileNo.
+                </td>
+                <td>
+                    @item.ResidenceNo.
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.Address @item.City @item.Country
+                </td>
+                <td>
+                    @item.Gender
+                </td>
+                <td>
+                    @item.EnrolledDate
+               </td>
+                <td>
+                    
+                    @Html.ActionLink("Edit","Edit",new {studentId=item.StudentId }, htmlAttributes:new { @class = "btn btn-sm btn-primary"})
+                    @Html.ActionLink("Delete","Delete", new { studentId = item.StudentId }, htmlAttributes: new { @class = "btn btn-sm btn-danger" })
+                </td>
+                
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+

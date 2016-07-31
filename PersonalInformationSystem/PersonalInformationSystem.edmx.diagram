@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3b4affef89ad492ca4fa6d3a28805c92" Name="Diagram1">
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.Class" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.CourseInfo" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.Payment" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.StudentCourseDetail" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.StudentInfo" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.StudentQualification" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.StudentReference" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.StudentSubject" Width="1.5" PointX="3.75" PointY="24.75" IsExpanded="true" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentQualification_StudentClass" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentSubject_StudentClass" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_payment_StudentInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentCourseDetails_StudentInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentQualification_StudentInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentReference_StudentInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentQualification_StudentSubject" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.Faculty" Width="1.5" PointX="6" PointY="1.875" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_Faculty_Class" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_CourseInfo_Faculty" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
