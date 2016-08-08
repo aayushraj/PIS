@@ -9,19 +9,27 @@
 {
     @Html.AntiForgeryToken()
 
+    
 
-    
-    
+
     @Html.ValidationSummary(true)
 
     <div class="row table-drop">
 
         <div class="col-xs-12">
-
+            @* Messages Section Start *@
+                    @if (TempData["SuccessFail"] != null)
+                        {
+                            <div class="alert alert-warning alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                @TempData["SuccessFail"]
+                            </div>
+                        }
+            @* Messages Section End *@
             <div class="panel panel-primary">
                 <div class="panel-heading">
 
-                    <h4>Add Cousre Information</h4>
+                    <h4>Add Course Information</h4>
 
                 </div>
                 <div class="panel-body">
@@ -35,7 +43,7 @@
 
                                 <div class="col-xs-12"><label>Course name</label></div>
                                 <div class="col-xs-12">
-                                    @Html.TextBoxFor(model => model.CourseName, htmlAttributes: new { @class = "form-control", @placeholder = "Course Name" })
+                                    @Html.TextBoxFor(model => model.CourseName, htmlAttributes: new { @class = "form-control", @placeholder = "Course Name",required="required" })
                                     @Html.ValidationMessageFor(model => model.CourseName)
                                 </div>
 
@@ -93,12 +101,14 @@
 
 
 
+                        <div class="clearfix"></div>
+
                         <div class="row col-xs-12">
-                            <div class="col-xs-4 ">
+                            <div class="col-xs-4 col-xs-offset-4">
                                 <div class="registerbtn col-xs-6">
-                                    <input type="submit" class="btn btn-lg btn-success" value="Save" />
+                                    <input type="submit" class="btn btn-sm btn-success" id="start" value="Save" />
                                 </div>
-                                <div class="registerbtn col-xs-6">@Html.ActionLink("Cancel", "Index", "CourseInfo", htmlAttributes: new { @class = "btn btn-lg btn-danger" });</div>
+                                <div class="registerbtn col-xs-3">@Html.ActionLink("Cancel", "Index", "CourseInfo", htmlAttributes: new { @class = "btn btn-sm btn-danger" })</div>
                             </div>
                         </div>
                     </div>
@@ -111,3 +121,18 @@
 
 
 }
+@if (TempData["Success"] != null)
+{
+    <script>
+	    $(function(){
+	    	$('#start').on('click',function(){
+				$.amaran({
+                    'message'   :'Added Succesfully',
+                    'inEffect': 'slideRight',
+                    'position'  :'top right'
+                });
+			});
+	    });
+    </script>
+}
+    
