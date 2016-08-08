@@ -8,7 +8,7 @@ namespace PersonalInformationSystem.Utility
     public static class ValidationMessage
     {
         public static string save = "Successfully Saved!";
-        public static string savefailed = "Save Failed !";
+        public static string savefailed = "Save Failed ! Please provide required data";
         public static string edit = "Successfully Updated!";
         public static string editfailed = "Update Failed !";
         public static string delete = "Successfully Deleted!";

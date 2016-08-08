@@ -9,6 +9,33 @@
 
     <div class="row table-drop">
         <div class="col-xs-12 col-lg-12">
+
+            @* Messages Section Start *@
+
+                    @if (TempData["Success"] != null)
+                        {
+                            <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                @TempData["Success"]
+                            </div>
+                        }
+                    @if (TempData["Update"] != null)
+                        {
+                            <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                @TempData["Update"]
+                            </div>
+                        }
+
+                    @if (TempData["Delete"] != null)
+                        {
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                @TempData["Delete"]
+                            </div>
+                        }
+
+        @* Messages Section End *@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4>Class List</h4>

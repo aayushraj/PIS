@@ -16,6 +16,16 @@
     <div class="row table-drop">
 
         <div class="col-xs-12">
+            @* Messages Section Start *@
+            @if (TempData["UpdateFail"] != null)
+            {
+                <div class="alert alert-warning alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    @TempData["UpdateFail"]
+                </div>
+            }
+            @* Messages Section End *@
+
 
             <div class="panel panel-primary">
                 <div class="panel-heading">

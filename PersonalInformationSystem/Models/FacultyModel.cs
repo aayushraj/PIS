@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,6 +12,7 @@ namespace PersonalInformationSystem.Models
         public int FacultyId { get; set; }
         public int ClassId { get; set; }
         public string ClassName { get; set; }
+        [Required]
         public string FacultyName { get; set; }
         public string FacultyDesc { get; set; }
         public int CreatedBy { get; set; }

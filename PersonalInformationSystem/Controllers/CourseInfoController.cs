@@ -34,10 +34,13 @@ namespace PersonalInformationSystem.Controllers
                 return RedirectToAction("Index", "CourseInfo");
                 //return View ();
             }
-            else {
+            else
+            {
+                TempData["UpdateFail"] = Utility.ValidationMessage.editfailed;
                 return View(model);
+
             }
-            
+
         }
         //GET
         public ActionResult Edit(int courseId)
@@ -55,20 +58,33 @@ namespace PersonalInformationSystem.Controllers
             if(ModelState.IsValid)
             {
                 pro.Save(model);
+                TempData["Update"] = Utility.ValidationMessage.edit;
                 return RedirectToAction("Index", "CourseInfo");
             }
             else
             {
+                TempData["UpdateFail"] = Utility.ValidationMessage.editfailed;
                 return View(model);
             }
         }
 
         public ActionResult Delete(int CourseId)
         {
-            TempData["msg"] = "<script>alert('Do you want to delete?');</script>";
-            CourseInfoProvider pro = new CourseInfoProvider();
-            pro.Delete(CourseId);
-            return RedirectToAction("Index", "CourseInfo");
+            try
+            {
+                //TempData["msg"] = "<script>alert('Do you want to delete?');</script>";
+                CourseInfoProvider pro = new CourseInfoProvider();
+                TempData["Delete"] = Utility.ValidationMessage.delete;
+                pro.Delete(CourseId);
+                return RedirectToAction("Index", "CourseInfo");
+            }
+
+            catch
+            {
+                TempData["DeleteFail"] = Utility.ValidationMessage.deletefailed;
+
+            }
+            return View();
         }
     }
 }

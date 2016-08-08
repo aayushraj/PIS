@@ -15,17 +15,14 @@ namespace PersonalInformationSystem.Controllers
         
 
         // GET: StudentInfo
-        public ActionResult Index(StudentInfoModel model)
+        public ActionResult Index()
         {
-            pro.GetList(model);
-            return View();
-        }
-
-        public ActionResult Details(StudentInfoModel model)
-        {
-            pro.GetList(model);
+            StudentInfoModel model = new StudentInfoModel();
+            model=pro.GetList(model);
             return View(model);
         }
+
+               
         public ActionResult Create()
         {
             
@@ -36,14 +33,24 @@ namespace PersonalInformationSystem.Controllers
         public ActionResult Create(StudentInfoModel model)
         {
           
+            if(ModelState.IsValid)
+            {
+                pro.Save(model);
 
-            pro.Save(model);
-          
-            
-                return RedirectToAction("Index","Home");
-            
-            
-           // return View(model);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            else { return View(model); }
+           
+        }
+
+        public ActionResult Delete(int studentId)
+        {
+            pro.Delete(studentId);
+           // TempData["Delete"] = Utility.ValidationMessage.delete;
+            return RedirectToAction("Index", "StudentInfo");
         }
     }
 }

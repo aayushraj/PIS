@@ -30,11 +30,18 @@ namespace PersonalInformationSystem.Controllers
         public ActionResult Create(FacultyModel model)
         {
             if (ModelState.IsValid)
-            { 
-                 pro.Save(model);
+            {
+                TempData["Success"] = Utility.ValidationMessage.save;
+                pro.Save(model);
                 return RedirectToAction("Index");
             }
-            return View(model);
+
+            else
+            {
+                TempData["SuccessFail"] = Utility.ValidationMessage.savefailed;
+                return View(model);
+
+            }
         }
         public ActionResult Edit(int facultyID)
         {
@@ -47,14 +54,24 @@ namespace PersonalInformationSystem.Controllers
         [HttpPost]
         public ActionResult Edit(FacultyModel model)
         {
-            pro.Save(model);
-            return RedirectToAction("Index", "Faculty");
+            if (ModelState.IsValid)
+            { 
+                pro.Save(model);
+                TempData["Update"] = Utility.ValidationMessage.edit;
+                return RedirectToAction("Index", "Faculty");
+            }
+            else
+            {
+                TempData["UpdateFail"] = Utility.ValidationMessage.editfailed;
+                return View(model);
+            }
 
         }
 
         public ActionResult Delete(int facultyId)
         {
             pro.Delete(facultyId);
+            TempData["Delete"] = Utility.ValidationMessage.delete;
             return RedirectToAction("Index", "Faculty");
 
         }

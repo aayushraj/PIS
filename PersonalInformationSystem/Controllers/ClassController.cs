@@ -17,6 +17,7 @@ namespace PersonalInformationSystem.Controllers
         public ActionResult Index()
         {
             ClassModel model = new ClassModel();
+
             model = pro.GetList();
             return View(model);
         }
@@ -31,10 +32,17 @@ namespace PersonalInformationSystem.Controllers
             if (ModelState.IsValid)
             {
                 pro.Save(model);
+                TempData["Success"] = Utility.ValidationMessage.save;
                 return RedirectToAction("Index");
             }
-            return View(model);
+
+            else
+            {
+                TempData["SuccessFail"] = Utility.ValidationMessage.savefailed;
+                return View(model);
+            }
         }
+
         public ActionResult Edit(int classId)
         {
             ClassModel model = new ClassModel();
@@ -49,10 +57,16 @@ namespace PersonalInformationSystem.Controllers
             if (ModelState.IsValid)
             { 
                 pro.Save(model);
+                TempData["Update"] = Utility.ValidationMessage.edit;
                 return RedirectToAction("Index", "Class");
             }
 
-            return View(model);
+            else
+            {
+                TempData["UpdateFail"] = Utility.ValidationMessage.editfailed;
+                return View(model);
+
+            }
         }
 
 
@@ -60,6 +74,7 @@ namespace PersonalInformationSystem.Controllers
         public ActionResult Delete(int classId)
         {
             pro.Delete(classId);
+            TempData["Delete"] = Utility.ValidationMessage.delete;
             return RedirectToAction("Index", "Class");
         }
     }

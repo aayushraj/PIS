@@ -12,6 +12,10 @@ Author: http://binarytheme.com
     font-size:22px;
     background-color:rgb(83, 163, 163);
 }
+
+
+ 
+
 .user-section-inner {
     height: 65px;
 width: 65px;
@@ -64,15 +68,16 @@ margin-bottom: 0px
 /* side-menu section */
 .nav > li > a:hover, .nav > li > a:focus {
     background-color:rgb(47, 81, 161);
+
 }
 .navbar-top-links  .open > a, .nav .open > a:hover, .nav .open > a:focus {
-    background-color: #75C5B8;
+    background-color: #04B173;
 }
 .navbar-top-links > li > a {
 color: #FFFFFF;
 }
 .nav > li > a {
-padding: 20px 15px;
+padding: 14px 15px;
 }
 #side-menu {
     background-color:#04B173;
@@ -109,6 +114,7 @@ padding: 20px 15px;
 
 #navbar {
     background-color:#5364a3;
+    height:10%;
 }
 
 .navbar-brand {
@@ -146,10 +152,10 @@ border-color: #27A6BE;
 {
     #page-wrapper {
         position: inherit;
-        margin: 2% 0 0 250px;
+        margin: 0 0 0 196px;
         padding: 0px 30px;
         min-height: 1000px;
-       margin-top:6%;
+       
        
     }
 
