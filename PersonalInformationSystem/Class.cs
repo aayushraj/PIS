@@ -20,6 +20,7 @@ namespace PersonalInformationSystem
             this.StudentQualifications = new HashSet<StudentQualification>();
             this.StudentSubjects = new HashSet<StudentSubject>();
             this.Faculties = new HashSet<Faculty>();
+            this.StudentInfoes = new HashSet<StudentInfo>();
         }
     
         public int ClassId { get; set; }
@@ -30,7 +31,7 @@ namespace PersonalInformationSystem
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedOn { get; set; }
-        public bool Status { get; set; }
+        public Nullable<bool> Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentQualification> StudentQualifications { get; set; }
@@ -38,5 +39,7 @@ namespace PersonalInformationSystem
         public virtual ICollection<StudentSubject> StudentSubjects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Faculty> Faculties { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentInfo> StudentInfoes { get; set; }
     }
 }

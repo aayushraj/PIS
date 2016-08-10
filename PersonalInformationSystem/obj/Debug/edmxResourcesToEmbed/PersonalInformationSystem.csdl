@@ -16,6 +16,7 @@
     <NavigationProperty Name="StudentQualifications" Relationship="Self.FK_StudentQualification_StudentClass" FromRole="Class" ToRole="StudentQualification" />
     <NavigationProperty Name="StudentSubjects" Relationship="Self.FK_StudentSubject_StudentClass" FromRole="Class" ToRole="StudentSubject" />
     <NavigationProperty Name="Faculties" Relationship="PersonalInformationSystemModel.FK_Faculty_Class" FromRole="Class" ToRole="Faculty" />
+    <NavigationProperty Name="StudentInfoes" Relationship="PersonalInformationSystemModel.FK_StudentInfo_Class" FromRole="Class" ToRole="StudentInfo" />
   </EntityType>
   <EntityType Name="CourseInfo">
     <Key>
@@ -106,6 +107,11 @@
     <NavigationProperty Name="StudentCourseDetails" Relationship="Self.FK_StudentCourseDetails_StudentInfo" FromRole="StudentInfo" ToRole="StudentCourseDetails" />
     <NavigationProperty Name="StudentQualifications" Relationship="Self.FK_StudentQualification_StudentInfo" FromRole="StudentInfo" ToRole="StudentQualification" />
     <NavigationProperty Name="StudentReferences" Relationship="Self.FK_StudentReference_StudentInfo" FromRole="StudentInfo" ToRole="StudentReference" />
+    <Property Name="ClassID" Type="Int32" />
+    <Property Name="FacultyId" Type="Int32" />
+    <Property Name="CourseId" Type="Int32" />
+    <NavigationProperty Name="Class" Relationship="PersonalInformationSystemModel.FK_StudentInfo_Class" FromRole="StudentInfo" ToRole="Class" />
+    <NavigationProperty Name="Faculty" Relationship="PersonalInformationSystemModel.FK_StudentInfo_Faculty" FromRole="StudentInfo" ToRole="Faculty" />
   </EntityType>
   <EntityType Name="StudentQualification">
     <Key>
@@ -308,6 +314,14 @@
       <End Role="Faculty" EntitySet="Faculties" />
       <End Role="CourseInfo" EntitySet="CourseInfoes" />
     </AssociationSet>
+    <AssociationSet Name="FK_StudentInfo_Class" Association="PersonalInformationSystemModel.FK_StudentInfo_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentInfo_Faculty" Association="PersonalInformationSystemModel.FK_StudentInfo_Faculty">
+      <End Role="Faculty" EntitySet="Faculties" />
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Faculty">
     <Key>
@@ -326,6 +340,7 @@
     <NavigationProperty Name="Class" Relationship="PersonalInformationSystemModel.FK_Faculty_Class" FromRole="Faculty" ToRole="Class" />
     <NavigationProperty Name="CourseInfoes" Relationship="PersonalInformationSystemModel.FK_CourseInfo_Faculty" FromRole="Faculty" ToRole="CourseInfo" />
     <Property Name="Status" Type="Boolean" Nullable="true" />
+    <NavigationProperty Name="StudentInfoes" Relationship="PersonalInformationSystemModel.FK_StudentInfo_Faculty" FromRole="Faculty" ToRole="StudentInfo" />
   </EntityType>
   <Association Name="FK_Faculty_Class">
     <End Type="PersonalInformationSystemModel.Class" Role="Class" Multiplicity="1" />
@@ -347,6 +362,30 @@
         <PropertyRef Name="FacultyId" />
       </Principal>
       <Dependent Role="CourseInfo">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentInfo_Class">
+    <End Type="PersonalInformationSystemModel.Class" Role="Class" Multiplicity="0..1" />
+    <End Type="PersonalInformationSystemModel.StudentInfo" Role="StudentInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="StudentInfo">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentInfo_Faculty">
+    <End Type="PersonalInformationSystemModel.Faculty" Role="Faculty" Multiplicity="0..1" />
+    <End Type="PersonalInformationSystemModel.StudentInfo" Role="StudentInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="StudentInfo">
         <PropertyRef Name="FacultyId" />
       </Dependent>
     </ReferentialConstraint>

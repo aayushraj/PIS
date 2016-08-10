@@ -77,6 +77,9 @@
     <EntitySetMapping Name="StudentInfoes">
       <EntityTypeMapping TypeName="PersonalInformationSystemModel.StudentInfo">
         <MappingFragment StoreEntitySet="StudentInfo">
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />

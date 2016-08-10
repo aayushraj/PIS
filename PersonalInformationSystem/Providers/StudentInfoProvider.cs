@@ -50,26 +50,23 @@ namespace PersonalInformationSystem.Providers
 
             entityStudentInfo.StudentId = model.StudentId;
             entityStudentInfo.FirstName = model.FirstName;
+            entityStudentInfo.MiddleName = model.MiddleName;
             entityStudentInfo.LastName = model.LastName;
             entityStudentInfo.MobileNo = model.MobileNo;
             entityStudentInfo.Address = model.Address;
+            entityStudentInfo.DateOfBirth = model.DateOfBirth;
             entityStudentInfo.City = model.City;
             entityStudentInfo.Country = model.Country;
             entityStudentInfo.Email = model.Email;
             entityStudentInfo.Gender = model.Gender;
-            entityStudentInfo.EnrolledDate = DateTime.Now;
+            entityStudentInfo.EnrolledDate = model.EnrolledDate;
             entityStudentInfo.ComputerLiterate = model.ComputerLiterate;
-            entityStudentInfo.Status = model.Status;
 
-            Payment entPayment = new Payment();
-            entPayment.PaymentId = model.ObjPaymentModel.PaymentId;
-            entPayment.DueAmount = model.ObjPaymentModel.DueAmount;
-            entPayment.PaidAmount = model.ObjPaymentModel.PaidAmount;
+            entityStudentInfo.ClassID = model.ClassID;
+            entityStudentInfo.FacultyId = model.FacultyId;
+            entityStudentInfo.CourseId = model.CourseId;
 
-            CourseInfo entCourseInfo = new CourseInfo();
-            entCourseInfo.CourseId = model.ObjCourseInfoModel.CourseId;
-            entCourseInfo.CourseName = model.ObjCourseInfoModel.CourseName;
-            entCourseInfo.CourseDuration = model.ObjCourseInfoModel.CourseDuration;
+
 
 
 
@@ -78,15 +75,17 @@ namespace PersonalInformationSystem.Providers
                 ent.Entry(entityStudentInfo).State = EntityState.Modified;
                 entityStudentInfo.ModifiedBy = 1;
                 entityStudentInfo.ModifiedOn = DateTime.Now;
+                entityStudentInfo.Status = model.Status;
             }
 
             else
             {
                 ent.StudentInfoes.Add(entityStudentInfo);
-                ent.CourseInfoes.Add(entCourseInfo);
-                ent.Payments.Add(entPayment);
+                //ent.CourseInfoes.Add(entCourseInfo);
+                //ent.Payments.Add(entPayment);
                 entityStudentInfo.CreatedBy = 1;
                 entityStudentInfo.CreatedOn = DateTime.Now;
+                entityStudentInfo.Status = true;
             }
 
             

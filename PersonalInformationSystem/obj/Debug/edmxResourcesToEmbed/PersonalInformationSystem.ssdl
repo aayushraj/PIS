@@ -90,6 +90,9 @@
       <PropertyRef Name="StudentId" />
     </Key>
     <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassID" Type="int" />
+    <Property Name="FacultyId" Type="int" />
+    <Property Name="CourseId" Type="int" />
     <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
     <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
     <Property Name="LastName" Type="nvarchar" MaxLength="50" />
@@ -220,6 +223,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_StudentInfo_Class">
+    <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="StudentInfo">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentInfo_Faculty">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="StudentInfo">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_StudentQualification_StudentClass">
     <End Role="Class" Type="Self.Class" Multiplicity="1" />
     <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
@@ -309,6 +336,14 @@
     <AssociationSet Name="FK_StudentCourseDetails_StudentInfo" Association="Self.FK_StudentCourseDetails_StudentInfo">
       <End Role="StudentInfo" EntitySet="StudentInfo" />
       <End Role="StudentCourseDetails" EntitySet="StudentCourseDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentInfo_Class" Association="Self.FK_StudentInfo_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="StudentInfo" EntitySet="StudentInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentInfo_Faculty" Association="Self.FK_StudentInfo_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="StudentInfo" EntitySet="StudentInfo" />
     </AssociationSet>
     <AssociationSet Name="FK_StudentQualification_StudentClass" Association="Self.FK_StudentQualification_StudentClass">
       <End Role="Class" EntitySet="Class" />

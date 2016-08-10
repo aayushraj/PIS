@@ -33,16 +33,15 @@ namespace PersonalInformationSystem.Controllers
         public ActionResult Create(StudentInfoModel model)
         {
           
-            if(ModelState.IsValid)
-            {
+            
                 pro.Save(model);
 
 
                 return RedirectToAction("Index", "Home");
-            }
+            
 
 
-            else { return View(model); }
+             
            
         }
 

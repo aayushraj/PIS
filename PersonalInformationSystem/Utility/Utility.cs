@@ -19,7 +19,15 @@ namespace PersonalInformationSystem.Utility
         {
             using (PersonalInformationSystemEntities ent = new PersonalInformationSystemEntities())
             {
-                return new SelectList(ent.Faculties.Where(m=>m.Status==true), "FacultyId", "FacultyName");
+                return new SelectList(ent.Faculties.Where(m=>m.Status==true).ToList(), "FacultyId", "FacultyName");
+            }
+        }
+
+        public static IEnumerable<SelectListItem> GetCourses()
+        {
+            using (PersonalInformationSystemEntities ent = new PersonalInformationSystemEntities())
+            {
+                return new SelectList(ent.CourseInfoes.Where(m => m.Status == true).ToList(), "CourseId", "CourseName");
             }
         }
 
@@ -33,7 +41,7 @@ namespace PersonalInformationSystem.Utility
 
 
 
-            }, "value", "Value");
+            }, "Id", "Value");
         }
 
         public static IEnumerable<SelectListItem> GetAns()

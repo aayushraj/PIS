@@ -18,7 +18,7 @@ namespace PersonalInformationSystem.Models
         public DateTime ModifiedOn { get; set; }
         public int DeletedBy { get; set; }
         public DateTime DeletedOn { get; set; }
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
 
         public List<ClassModel> ClassModelList { get; set; }
        

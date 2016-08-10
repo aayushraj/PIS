@@ -4,8 +4,7 @@
     ViewBag.Title = "Registration";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<script src="~/Scripts/jquery.validate.min.js"></script>
-
+<script src="~/Content/assets/scripts/countries.js"></script>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -14,249 +13,286 @@
     @Html.ValidationSummary(true)
 
 
-    <h2 class="page-header col-xs-12">Student's Registration Form</h2>
+    <div class="row table-drop">
 
-    <div class="col-xs-12">
-        <div class="row">
-
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-
-                    <div class="col-xs-12"><label>First name</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.FirstName, htmlAttributes: new { @class = "form-control", @placeholder = "First Name" })
-                        @Html.ValidationMessageFor(model => model.FirstName)
-                    </div>
+        <div class="col-xs-12">
+            @* Messages Section Start *@
+            @if (TempData["SuccessFail"] != null)
+            {
+                <div class="alert alert-warning alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    @TempData["SuccessFail"]
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Middle name</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.MiddleName, htmlAttributes: new { @class = "form-control", @placeholder = "Middle Name" })
-                        @Html.ValidationMessageFor(model => model.MiddleName)
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Last name</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.LastName, htmlAttributes: new { @class = "form-control", @placeholder = "Last Name" })
-                        @Html.ValidationMessageFor(model => model.LastName)
-                    </div>
-                </div>
-            </div>
+            }
+            @* Messages Section End *@
+            <div class="panel panel-primary">
+                <div class="panel-heading">
 
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Date of Birth</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.DateOfBirth, htmlAttributes: new { @class = "form-control", @placeholder = "DOB", @type="date" })
-                        @Html.ValidationMessageFor(model => model.DateOfBirth)
-                    </div>
+                    <h4>Add Student's Information</h4>
+
                 </div>
-            </div>
+                <div class="panel-body">
+                    <div class="col-xs-12">
 
 
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Gender</label></div>
-                    <div class="col-xs-12">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <span class="col-xs-4"><input type="radio" name="gender" value="male" id="male"> <label for="male">Male</label></span>
-                                <span class="col-xs-4"><input type="radio" name="gender" value="female" id="female"><label for="female">Female</label></span>
-                                <span class="col-xs-4"><input type="radio" name="gender" value="other" id="othergen"> <label for="othergen">Other</label></span>
+                        <div class="clearfix"></div>
+
+                        <div class="col-xs-12">
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+
+                                        <div class="col-xs-12"><label>First name</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.FirstName, htmlAttributes: new { @class = "form-control", @placeholder = "First Name" })
+                                            @Html.ValidationMessageFor(model => model.FirstName)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Middle name</label>(optional)</div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.MiddleName, htmlAttributes: new { @class = "form-control", @placeholder = "Middle Name" })
+                                            @Html.ValidationMessageFor(model => model.MiddleName)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Last name</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.LastName, htmlAttributes: new { @class = "form-control", @placeholder = "Last Name" })
+                                            @Html.ValidationMessageFor(model => model.LastName)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Date of Birth</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.DateOfBirth, htmlAttributes: new { @class = "form-control", @placeholder = "DOB", @type = "date" })
+                                            @Html.ValidationMessageFor(model => model.DateOfBirth)
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Gender</label></div>
+                                        <div class="col-xs-12">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    @Html.DropDownListFor(model => model.Gender, PersonalInformationSystem.Utility.Utility.GetGender(), htmlAttributes: new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Street Address</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.Address, htmlAttributes: new { @class = "form-control", @placeholder = "Street Name" })
+                                            @Html.ValidationMessageFor(model => model.Address)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>City name</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.City, htmlAttributes: new { @class = "form-control", @placeholder = "City" })
+                                            @Html.ValidationMessageFor(model => model.City)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Country name</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model=>model.Country, htmlAttributes: new { @class = "form-control"})
+                                            @Html.ValidationMessageFor(model => model.Country)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Email</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.Email, htmlAttributes: new { @class = "form-control", @placeholder = "Email Address" })
+                                            @Html.ValidationMessageFor(model => model.Email)
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Contact No</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.MobileNo, htmlAttributes: new { @class = "form-control", @placeholder = "Mobile" })
+                                            @Html.ValidationMessageFor(model => model.MobileNo)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label></label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.ResidenceNo, htmlAttributes: new { @class = "form-control", @placeholder = "Residence" })
+                                            @Html.ValidationMessageFor(model => model.ResidenceNo)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><b>Qualification</b></div>
+                                        <div class="col-xs-12"><label>Class</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.DropDownListFor(model => model.ClassID, PersonalInformationSystem.Utility.Utility.GetClasses(), htmlAttributes: new { @class = "form-control" })
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label></label></div>
+                                        <div class="col-xs-12"><label>Faculty</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.DropDownListFor(model => model.FacultyId, PersonalInformationSystem.Utility.Utility.GetFaculties(), htmlAttributes: new { @class = "form-control" })
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Enrollment Date</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.EnrolledDate, htmlAttributes: new { @class = "form-control", @placeholder = "Enrolled Date", @type = "date" })
+                                            @Html.ValidationMessageFor(model => model.EnrolledDate)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Computer Literate</label></div>
+                                        <div class="col-xs-12">
+                                            <span class="col-xs-6">@Html.RadioButtonFor(model => model.ComputerLiterate, "Yes", htmlAttributes: new { @checked = "checked" })<label>Yes</label></span>
+                                            <span class="col-xs-6">@Html.RadioButtonFor(model => model.ComputerLiterate, "No")<label>No</label></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>How did you learn about us?</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.CheckBox("Poster")<label>Poster</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Friends Name</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.EnrolledDate, htmlAttributes: new { @class = "form-control", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.EnrolledDate)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Course Choosed</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.DropDownListFor(model => model.CourseId, PersonalInformationSystem.Utility.Utility.GetCourses(), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.CourseId)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Duration(months)</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.ObjCourseInfoModel.CourseDuration, htmlAttributes: new { @class = "form-control", @placeholder = "Duration" })
+                                            @Html.ValidationMessageFor(model => model.EnrolledDate)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label>Payment:</label></div>
+                                        <div class="col-xs-12"><label>Total</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.ObjCourseInfoModel.CourseAmount, htmlAttributes: new { @class = "form-control", @placeholder = "Pay" })
+                                            @Html.ValidationMessageFor(model => model.ObjCourseInfoModel)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label></label></div>
+
+                                        <div class="col-xs-12"><label>Advance</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.ObjPaymentModel.PaidAmount, htmlAttributes: new { @class = "form-control", @placeholder = "Advance" })
+                                            @Html.ValidationMessageFor(model => model.ObjPaymentModel)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4 form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12"><label></label></div>
+
+                                        <div class="col-xs-12"><label>Due</label></div>
+                                        <div class="col-xs-12">
+                                            @Html.TextBoxFor(model => model.ObjPaymentModel.DueAmount, htmlAttributes: new { @class = "form-control", @placeholder = "Due" })
+                                            @Html.ValidationMessageFor(model => model.ObjPaymentModel)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+
+                                <div class="row col-xs-12">
+                                    <div class="col-xs-4 col-xs-offset-4">
+                                        <div class="registerbtn col-xs-6">
+                                            <input type="submit" class="btn btn-lg btn-success" value="Register" />
+                                        </div>
+                                        <div class="registerbtn col-xs-6">@Html.ActionLink("Cancel", "Index", "StudentInfo", htmlAttributes: new { @class = "btn btn-lg btn-danger" })</div>
+                                    </div>
+                                </div>
+                                @*@Html.ActionLink("Register", "Create", "StudentInfo", htmlAttributes: new { @class = "btn btn-lg btn-success", @type="submit" });*@
+
+
+
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
-            <div class="clearfix"></div>
-
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Street Address</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.Address, htmlAttributes: new { @class = "form-control", @placeholder = "Street Name" })
-                        @Html.ValidationMessageFor(model => model.Address)
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>City name</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.City, htmlAttributes: new { @class = "form-control", @placeholder = "City" })
-                        @Html.ValidationMessageFor(model => model.City)
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Country name</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.Country, htmlAttributes: new { @class = "form-control", @placeholder = "Country" })
-                        @Html.ValidationMessageFor(model => model.Country)
-                    </div>
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Email</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.Email, htmlAttributes: new { @class = "form-control", @placeholder = "Email Address" })
-                        @Html.ValidationMessageFor(model => model.Email)
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Contact No</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.MobileNo, htmlAttributes: new { @class = "form-control", @placeholder = "Mobile" })
-                        @Html.ValidationMessageFor(model => model.MobileNo)
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label></label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.ResidenceNo, htmlAttributes: new { @class = "form-control", @placeholder = "Residence" })
-                        @Html.ValidationMessageFor(model => model.ResidenceNo)
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="clearfix"></div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Enrollment Date</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.EnrolledDate, htmlAttributes: new { @class = "form-control", @placeholder = "Enrolled Date" })
-                        @Html.ValidationMessageFor(model => model.EnrolledDate)
-                    </div>
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Computer Literate</label></div>
-                    <div class="col-xs-12">
-                        <span class="col-xs-6">@Html.RadioButtonFor(model => model.ComputerLiterate, "Yes", htmlAttributes: new { @checked = "checked" })<label>Yes</label></span>
-                        <span class="col-xs-6">@Html.RadioButtonFor(model => model.ComputerLiterate, "No")<label>No</label></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Enrollment Date</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.EnrolledDate, htmlAttributes: new { @class = "form-control", @placeholder = "Enrolled Date" })
-                        @Html.ValidationMessageFor(model => model.EnrolledDate)
-                    </div>
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>How did you learn about us?</label></div>
-                    <div class="col-xs-12">
-                        @Html.CheckBox("Poster")<label>Poster</label>
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Friends Name</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.EnrolledDate, htmlAttributes: new { @class = "form-control", @placeholder = "" })
-                        @Html.ValidationMessageFor(model => model.EnrolledDate)
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Course Choosed</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.ObjCourseInfoModel.CourseName, htmlAttributes: new { @class = "form-control", @placeholder = "Course Name" })
-                        @Html.ValidationMessageFor(model => model.EnrolledDate)
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Duration(months)</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.ObjCourseInfoModel.CourseDuration, htmlAttributes: new { @class = "form-control", @placeholder = "Duration" })
-                        @Html.ValidationMessageFor(model => model.EnrolledDate)
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label>Payment:</label></div>
-                    <div class="col-xs-12"><label>Total</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.ObjCourseInfoModel.CourseAmount, htmlAttributes: new { @class = "form-control", @placeholder = "Pay" })
-                        @Html.ValidationMessageFor(model => model.ObjCourseInfoModel)
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label></label></div>
-
-                    <div class="col-xs-12"><label>Advance</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.ObjPaymentModel.PaidAmount, htmlAttributes: new { @class = "form-control", @placeholder = "Advance" })
-                        @Html.ValidationMessageFor(model => model.ObjPaymentModel)
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-4 form-group">
-                <div class="row">
-                    <div class="col-xs-12"><label></label></div>
-
-                    <div class="col-xs-12"><label>Due</label></div>
-                    <div class="col-xs-12">
-                        @Html.TextBoxFor(model => model.ObjPaymentModel.DueAmount, htmlAttributes: new { @class = "form-control", @placeholder = "Due" })
-                        @Html.ValidationMessageFor(model => model.ObjPaymentModel)
-                    </div>
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="row col-xs-12">
-                <div class="col-xs-4 col-xs-offset-4">
-                    <div class="registerbtn col-xs-6">
-                        <input type="submit" class="btn btn-lg btn-success" value="Register" />"
-                    </div>
-                    <div class="registerbtn col-xs-6">@Html.ActionLink("Cancel", "Index", "StudentInfo", htmlAttributes: new { @class = "btn btn-lg btn-danger" });</div>
-                </div>
-            </div>
-            @*@Html.ActionLink("Register", "Create", "StudentInfo", htmlAttributes: new { @class = "btn btn-lg btn-success", @type="submit" });*@
-
-
-
         </div>
     </div>
 }

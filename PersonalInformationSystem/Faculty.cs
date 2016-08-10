@@ -18,11 +18,11 @@ namespace PersonalInformationSystem
         public Faculty()
         {
             this.CourseInfoes = new HashSet<CourseInfo>();
+            this.StudentInfoes = new HashSet<StudentInfo>();
         }
     
         public int FacultyId { get; set; }
         public int ClassId { get; set; }
-        
         public string FacultyName { get; set; }
         public string FacultyDesc { get; set; }
         public Nullable<int> CreatedBy { get; set; }
@@ -31,10 +31,12 @@ namespace PersonalInformationSystem
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedOn { get; set; }
-        public bool Status { get; set; }
+        public Nullable<bool> Status { get; set; }
     
         public virtual Class Class { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseInfo> CourseInfoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentInfo> StudentInfoes { get; set; }
     }
 }

@@ -24,11 +24,14 @@ namespace PersonalInformationSystem
         }
     
         public int StudentId { get; set; }
+        public Nullable<int> ClassID { get; set; }
+        public Nullable<int> FacultyId { get; set; }
+        public Nullable<int> CourseId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         public Nullable<int> Gender { get; set; }
@@ -38,12 +41,13 @@ namespace PersonalInformationSystem
         public Nullable<System.DateTime> EnrolledDate { get; set; }
         public Nullable<bool> ComputerLiterate { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
-        public Nullable<int> ModifiedBy { get; set; }
+        public int CreatedBy { get; set; }
+        public int ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
-        public Nullable<int> DeletedBy { get; set; }
+        public int DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedOn { get; set; }
         public Nullable<bool> Status { get; set; }
+        
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }
@@ -53,5 +57,7 @@ namespace PersonalInformationSystem
         public virtual ICollection<StudentQualification> StudentQualifications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentReference> StudentReferences { get; set; }
+        public virtual Class Class { get; set; }
+        public virtual Faculty Faculty { get; set; }
     }
 }

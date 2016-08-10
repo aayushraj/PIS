@@ -66,18 +66,20 @@ namespace PersonalInformationSystem.Providers
             entityCourseInfo.CourseDuration = model.CourseDuration;
             entityCourseInfo.Facilitator = model.Facilitator;
             entityCourseInfo.CourseAmount = model.CourseAmount;
-            entityCourseInfo.Status = model.Status;
 
             if(model.CourseId!=0 && model.CourseId > 0)
             {
                 ent.Entry(entityCourseInfo).State = EntityState.Modified;
                 entityCourseInfo.ModifiedBy = 1;
                 entityCourseInfo.ModifiedOn = DateTime.Now;
+                entityCourseInfo.Status = model.Status;
+
             }
             else
             {
                 ent.Entry(entityCourseInfo).State = EntityState.Added;
                 entityCourseInfo.CreatedBy = 1;
+                entityCourseInfo.Status = true;
                 entityCourseInfo.CreatedOn = DateTime.Now;
             }
             ent.SaveChanges();
